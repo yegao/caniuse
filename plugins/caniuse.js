@@ -1,36 +1,27 @@
-const m2j = require('md2json')
-let cache = [];
-let map = {};
-
-m2j.scan(__dirname+'/src/api',/\.((md)|(markdown))$/i,[],(res)=>{
-    cache.push(res);
-});
-
-for(let one of cache){
-    let str = one.content;
-    str.replace(/\#\#\#(\s*)([\w._$]*)\([^\)]*\)(\s*\`?)(\d*)(\+?\`?)/g,function(a,b,c,d,e){
-       map[c] = {
-           version: +e || 1020
-       }
-    })
-}
-
-export default function caniuse () {
+// import fs from 'fs';
+// import path from 'path'
+import getMap from "./map.js"
+export default () => {
     return {
-    //   name: 'caniuse', 
-    //   resolveId ( importee ) {
-    //     console.log('----------------')
-    //     console.log(importee);
-    //   },
-    //   load ( id ) {
-    //     console.log('>>>>>>>>>>>>>>>>')
-    //     console.log(id);
-    name: "filesize",
-    ongenerate(bundle,{code}) {
-        // console.log(code);
-        console.log(map);
+        // 插件名称
+        name: 'rollup-plugin-x',
+        resolveId(importee,importer){
+            console.log("resolvedId:",importee)
+            if(importee==="xyz"){
+                return importee;
+            }
+            return null;
+        },
+        load(id){
+            console.log("load:",id)
+            if(id==='xyz'){
+                return getMap().then(function(res){
+                    return "export default "+JSON.stringify(res)
+                })
+                // console.log(sss);
+                // return "export default " + sss;
+            }
+            return null
+        }
     }
-        // return `module.exports = "xxx"`
-    //   }
-    };
-  }
+}

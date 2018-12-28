@@ -2,8 +2,7 @@
 // import resolve from 'rollup-plugin-node-resolve';
 // import json from 'rollup-plugin-json';
 // import { uglify } from 'rollup-plugin-uglify';
-import x from './plugins/x.js'
-// import y from './plugins/y.js';
+import caniuse from './plugins/caniuse.js'
 
 export default {
     input: './src/index.js',
@@ -19,8 +18,7 @@ export default {
         // babel({
         //     exclude: 'node_modules/**'
         // }),
-        x(),
-        // y()
+        caniuse(),
         //,json(),uglify(),
     ],
     watch:{
