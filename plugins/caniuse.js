@@ -7,19 +7,17 @@ export default () => {
         name: 'rollup-plugin-x',
         resolveId(importee,importer){
             console.log("resolvedId:",importee)
-            if(importee==="xyz"){
+            if(importee==="api-document"){
                 return importee;
             }
             return null;
         },
         load(id){
             console.log("load:",id)
-            if(id==='xyz'){
+            if(id==='api-document'){
                 return getMap().then(function(res){
                     return "export default "+JSON.stringify(res)
                 })
-                // console.log(sss);
-                // return "export default " + sss;
             }
             return null
         }

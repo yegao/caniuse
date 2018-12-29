@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "d": "rollup -c"
+    "d": "source apidocument.sh && rollup -c"
   },
   "author": "",
   "license": "ISC",

@@ -3,7 +3,7 @@ let cache = [];
 let map = {};
 
 export default async () => {
-    await m2j.scan(__dirname+'/data/api',/\.((md)|(markdown))$/i,[],(res)=>{
+    await m2j.scan(__dirname+'/InternetTechDevelop/docs/api',/\.((md)|(markdown))$/i,[],(res)=>{
         cache.push(res);
     });
     
